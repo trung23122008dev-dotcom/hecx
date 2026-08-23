@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>NTrungIOS ADMIN</title>
+
+</head>
+
+
+<body>
+
+
+<h1>
+☠ ADMIN CREATE KEY
+</h1>
+
+
+<input id="days"
+placeholder="Số ngày">
+
+
+<button onclick="createKey()">
+
+CREATE
+
+</button>
+
+
+<div id="out"></div>
+
+
+
+<script>
+
+
+async function createKey(){
+
+
+let r=await fetch(
+
+"/api/create-key",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":
+
+"application/json"
+
+},
+
+body:JSON.stringify({
+
+days:days.value
+
+})
+
+}
+
+);
+
+
+
+let d=await r.json();
+
+
+
+out.innerHTML=
+
+`
+
+KEY:
+
+<b>${d.key}</b>
+
+<br>
+
+EXPIRE:
+
+${d.expire}
+
+`;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
